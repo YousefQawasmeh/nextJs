@@ -1,10 +1,12 @@
 import React from "react";
 import Link from "next/link";
 import axios from "axios";
-
+import { DefaultSeo } from "next-seo";
+import SEO from "../../SEO";
 const University = (props, a) => {
   return (
     <div>
+      <DefaultSeo {...SEO} title='Universities in jordan' />
       <h1>Universities in jordan</h1>
       <ul>
         {!props.universities
@@ -26,6 +28,7 @@ export async function getServerSideProps(props) {
     const { data: universities } = await axios.get(
       "https://tryitnow.herokuapp.com/universities"
     );
+
     return { props: { universities } };
   } catch (e) {
     console.log(e, "9999999999999999999999999");

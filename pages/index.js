@@ -1,9 +1,8 @@
 import Univerities from "./university";
 import axios from "axios";
+import { NextSeo } from "next-seo";
 
 export async function getServerSideProps(props) {
-  console.log("data props", props);
-
   try {
     const { data: universities } = await axios.get(
       "https://tryitnow.herokuapp.com/universities"
@@ -16,4 +15,11 @@ export async function getServerSideProps(props) {
 
   return { props: { data: [] } };
 }
-export default Univerities;
+export default (props) => {
+  return (
+    <>
+      <Univerities universities={props.universities} />;
+      <NextSeo title='Universities Home page' />
+    </>
+  );
+};

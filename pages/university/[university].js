@@ -1,11 +1,14 @@
 import axios from "axios";
 import Link from "next/link";
+import { DefaultSeo } from "next-seo";
+import SEO from "../../SEO";
 
 const university = (props) => {
   const universityInfo = props ? props.universityInfo : "";
   if (!universityInfo)
     return (
       <div>
+        <DefaultSeo {...SEO} title='404 not found university' />
         <h1>not found this university</h1>
         <Link href={"/university/"}>
           <a>click here to go the universities page</a>
@@ -14,6 +17,8 @@ const university = (props) => {
     );
   return (
     <div>
+      <DefaultSeo {...SEO} title={universityInfo.name} />
+
       <h1>{universityInfo.name}</h1>
 
       <h4>web_page</h4>
